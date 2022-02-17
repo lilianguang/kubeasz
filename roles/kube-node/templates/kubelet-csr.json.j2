@@ -1,0 +1,21 @@
+{
+  "CN": "system:node:{{ ansible_hostname }}",
+  "hosts": [
+    "127.0.0.1",
+    "{{ ansible_hostname }}",
+    "{{ inventory_hostname }}"
+  ],
+  "key": {
+    "algo": "rsa",
+    "size": 2048
+  },
+  "names": [
+    {
+      "C": "CN",
+      "ST": "HangZhou",
+      "L": "XS",
+      "O": "system:nodes",
+      "OU": "System"
+    }
+  ]
+}

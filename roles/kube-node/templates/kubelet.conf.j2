@@ -1,0 +1,14 @@
+KUBELET_OPTS="--logtostderr=false \
+  --log-dir={{ logs_kubelet }} \
+  --config=/{{ k8s_cfg_dir }}/kubelet-config.yaml \
+{% if CONTAINER_RUNTIME == "containerd" %}
+  --container-runtime=remote \
+  --container-runtime-endpoint=unix:///run/containerd/containerd.sock \
+{% endif %}
+  --hostname-override={{ ansible_hostname }} \
+  --image-pull-progress-deadline=5m \
+  --kubeconfig=/{{ k8s_cfg_dir }}/kubelet.kubeconfig \
+  --network-plugin=cni \
+  --pod-infra-container-image={{ SANDBOX_IMAGE }} \
+  --root-dir={{ KUBELET_ROOT_DIR }} \
+  --v=2"

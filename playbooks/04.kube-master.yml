@@ -1,0 +1,15 @@
+# to set up 'kube_master' nodes
+- hosts: kube_master
+  roles:
+#  - kube-lb
+  - kube-master
+  - kube-node
+  tasks:
+  - name: Making master nodes SchedulingDisabled
+    shell: "{{ k8s_bin_dir }}/kubectl cordon {{ ansible_hostname }} "
+    when: "inventory_hostname not in groups['kube_node']"
+    ignore_errors: true
+
+  - name: Setting master role name 
+    shell: "{{ k8s_bin_dir }}/kubectl label node {{ ansible_hostname }} kubernetes.io/role=master --overwrite"
+    ignore_errors: true

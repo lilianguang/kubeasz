@@ -1,0 +1,17 @@
+{
+  "registry-mirrors": ["https://b9pmyelo.mirror.aliyuncs.com"],
+  "insecure-registries": ["registry.access.redhat.com","harbor.gome.com.cn","quay.io"],
+  "max-concurrent-downloads": 10,
+  "log-driver": "json-file",
+  "log-level": "warn",
+  "log-opts": {
+    "max-size": "10m",
+    "max-file": "3"
+    },
+  "data-root": "/app/docker",
+  "exec-opts": ["native.cgroupdriver=systemd"],
+  "storage-driver": "overlay2",
+  "storage-opts": [
+    "overlay2.override_kernel_check=true"
+  ]
+}
